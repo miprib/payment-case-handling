@@ -4,9 +4,7 @@ import java.util.Optional;
 
 import com.mikostuff.payment.casehandling.cases.model.Case;
 
-public interface CaseRepo {
+public interface CasePaymentRepo {
 
-	Optional<Case> find(String caseId);
-
-	Case save(Case caseToSave);
+	Optional<Case> find(Long paymentId);
 }

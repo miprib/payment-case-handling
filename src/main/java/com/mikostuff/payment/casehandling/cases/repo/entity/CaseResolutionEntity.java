@@ -2,33 +2,27 @@ package com.mikostuff.payment.casehandling.cases.repo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "case_resolution", schema = "payment")
 public class CaseResolutionEntity {
 
-	public enum Status {
-		ACCEPTED, REJECTED
-	}
-
 	@Id
-	private Long id;
+	private String id;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId
-	private PaymentCaseEntity paymentCase;
+	private CaseEntity paymentCase;
 
-	@Enumerated(EnumType.STRING)
 	@Column(length = 10)
-	private Status resolution;
+	private String resolution;
 
-	public CaseResolutionEntity(Long id, PaymentCaseEntity paymentCase, Status resolution) {
-		this.id = id;
+	public CaseResolutionEntity(CaseEntity paymentCase, String resolution) {
 		this.paymentCase = paymentCase;
 		this.resolution = resolution;
 	}
@@ -36,15 +30,32 @@ public class CaseResolutionEntity {
 	public CaseResolutionEntity() {
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public PaymentCaseEntity getPaymentCase() {
+	public CaseEntity getPaymentCase() {
 		return paymentCase;
 	}
 
-	public Status getResolution() {
+	public String getResolution() {
 		return resolution;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof CaseResolutionEntity)) {
+			return false;
+		}
+		CaseResolutionEntity other = (CaseResolutionEntity) o;
+		return id != null && id.equals(other.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
 	}
 }

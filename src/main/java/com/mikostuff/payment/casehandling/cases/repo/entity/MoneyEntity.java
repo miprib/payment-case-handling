@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Money {
+public class MoneyEntity {
 
 	// TODO: Implement normal money representation like
 	// https://www.joda.org/joda-money/
@@ -16,10 +16,10 @@ public class Money {
 	@Column(length = 3)
 	private String currency;
 
-	public Money() {
+	public MoneyEntity() {
 	}
 
-	public Money(BigDecimal amount, String currency) {
+	public MoneyEntity(BigDecimal amount, String currency) {
 		this.amount = amount;
 		this.currency = currency;
 	}

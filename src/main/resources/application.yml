@@ -2,7 +2,7 @@ spring:
   main:
     banner-mode: off
   flyway:
-    enabled: false
+    enabled: true
     baseline-on-migrate: true
     ignore-missing-migrations: true #After some time you'll want to archive migrations scripts
     locations: classpath:/db/migration/h2
@@ -18,7 +18,7 @@ spring:
     show-sql: true
     generate-ddl: false
     hibernate:
-      ddl-auto: create-drop #Do not autogenerate SQL tables. Sometimes it might lead to suboptimal structures/types. Control you database!
+      ddl-auto: none #Do not autogenerate SQL tables. Sometimes it might lead to suboptimal structures/types. Control you database!
     properties:
       hibernate:
         #Turn it on only when you need for analysing queries. Do not leave it on!
